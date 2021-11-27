@@ -1,0 +1,72 @@
+[defs]
+BL	        = "#000000"
+WH	        = "#0A151F"
+RED	        = "#294374"
+ERR	        = "#FEFFFF"
+FN	        = "Terminus"
+FN_ICONS    = "Symbols Nerd Font"
+FS	        = 13
+FS_S        = 10
+DPI         = 101
+
+[mods]
+Xft.dpi     = "DPI"
+
+[mods.col]
+bl          = "BL"
+wh          = "WH"
+bg          = "BG"
+mg          = "MG"
+fg          = "FG"
+sel         = "SEL"
+
+[mods.polybar]
+font-0      = "FN:size=13"
+font-1      = "FN1:size=13"
+width       = "100%"
+height      = "24px"
+dpi         = "DPI"
+
+[mods.st]
+termname            = "xst-256color"
+borderless          = 1
+font                = "FN:size=FS_S:antialias=true:autohint=true"
+borderpx            = 10
+cursorshape         = 3
+cursorthickness     = 1
+cursorblinkstyle    = 0
+cursorblinkontype   = 0
+disablebold         = 0
+disableitalics      = 0
+disableroman        = 0
+scrollrate          = 10
+chscale             = 1.0
+cwscale             = 1.0
+blinktimeout        = 100
+bellvolume          = 5
+boxdraw             = 1
+boxdraw_bold        = 1
+boxdraw_braille     = 1
+depth               = 0
+opacity             = 255
+disable_alpha_correction = 0
+
+[mods.ALL]
+background  = "#0D1017"
+foreground  = "#F1F7ED"
+color0      = "#252550"
+color1      = "#D7263D"
+color2      = "#B0DB43"
+color3      = "#FFAE03"
+color4      = "#0061FE"
+color5      = "#F53385"
+color6      = "#3FA7D6"
+color7      = "#FFFFFF"
+color8      = "#353570"
+color9      = "#E7365D"
+color10		= "#C0EB63"
+color11		= "#FFBE23"
+color12		= "#1071FE"
+color13		= "#F543A5"
+color14		= "#4FB7F6"
+color15		= "#FFFFFF"
