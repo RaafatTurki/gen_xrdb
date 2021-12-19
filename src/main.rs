@@ -1,3 +1,4 @@
+use std::env;
 use std::fs::File;
 use std::io::prelude::*;
 use toml::Value;
@@ -14,13 +15,10 @@ fn get_xrdb_value_from_toml_value(v: &Value) -> String {
 
     if v.is_str() {
         xrdb_v = format!("{}", v.as_str().unwrap());
-
     } else if v.is_bool() {
         xrdb_v = format!("{}", v);
-
     } else if v.is_integer() {
         xrdb_v = format!("{}", v);
-
     } else {
         xrdb_v = String::from("UNSUPPORTED_DATA_TYPE");
         // println!("! {}.{} value is an unsupported data type", mod_name, k);
@@ -29,11 +27,15 @@ fn get_xrdb_value_from_toml_value(v: &Value) -> String {
 }
 
 fn main() {
-    let data = get_toml_values_from_file("xrdb.toml");
+    let args: Vec<String> = env::args().collect();
+    let filename = &args[1];
+
+    let data = get_toml_values_from_file(&filename);
     let mut xrdb_content = String::new();
 
     // generating header
-    xrdb_content.push_str(format!("{}\n\n", "! vim: filetype=xdefaults:commentstring=!%s").as_str());
+    let header = data["header"].as_str().unwrap();
+    xrdb_content.push_str(format!("{}\n\n", header).as_str());
 
     // generating defines
     for (k, v) in data["defs"].as_table().unwrap() {
@@ -44,7 +46,7 @@ fn main() {
 
     // generating mods
     for (mod_name, table) in data["mods"].as_table().unwrap() {
-        
+
         let final_mod_name;
         if mod_name == "ALL" {
             final_mod_name = "*"
