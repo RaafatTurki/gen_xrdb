@@ -1,0 +1,43 @@
+# Maintainer: Raafat Turki <raafat.turki@pm.me>
+
+pkgname=xrdb-gen
+pkgver=0.1
+pkgrel=1
+pkgdesc='a rust tool that generates xresources from toml'
+arch=(x86_64)
+url='https://github.com/RaafatTurki/xrdb-gen'
+makedepends=(git rust)
+source=("git+$url")
+# source=("git+$url#commit=b146958ecbb8c8c926159509ca7fb32a8573f897") # tag: v0.18.3
+# source=('git://github.com/RaafatTurki/xrdb-gen')
+cksums=('SKIP')
+
+build() {
+  cargo build \
+    --manifest-path "$srcdir/$pkgname/Cargo.toml" \
+    --release
+}
+
+package() {
+  install -Dm755 "$srcdir/$pkgname/target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+
+  # Package licenses
+  # install -Dm644 $pkgname/LICENSE-APACHE \
+  #   "$pkgdir/usr/share/licenses/$pkgname/LICENSE-APACHE"
+  # install -Dm644 $pkgname/LICENSE-MIT \
+  #   "$pkgdir/usr/share/licenses/$pkgname/LICENSE-MIT"
+
+  # cd $pkgname/target/release/build
+
+  # Package the man page
+  # find . -name bat.1 -type f -exec install -Dm644 {} \
+  #   "$pkgdir/usr/share/man/man1/bat.1" \;
+
+  # Package the zsh completion file (not in zsh-completions yet)
+  # find . -name bat.zsh -type f -exec install -Dm644 {} \
+  #   "$pkgdir/usr/share/zsh/site-functions/_bat" \;
+
+  # Package the fish completion
+  # find . -name bat.fish -type f -exec install -Dm644 {} \
+  #   "$pkgdir/usr/share/fish/vendor_completions.d/bat.fish" \;
+}
