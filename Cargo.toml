@@ -1,5 +1,5 @@
 [package]
-name = "xrdb-gen"
+name = "genxrdb"
 version = "0.1.0"
 edition = "2021"
 

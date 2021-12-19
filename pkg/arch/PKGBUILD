@@ -1,11 +1,11 @@
 # Maintainer: Raafat Turki <raafat.turki@pm.me>
 
-pkgname=xrdb-gen
+pkgname=genxrdb
 pkgver=0.1
 pkgrel=1
-pkgdesc='a rust tool that generates xresources from toml'
+pkgdesc='a tool that generates xresources from toml'
 arch=(x86_64)
-url='https://github.com/RaafatTurki/xrdb-gen'
+url='https://github.com/RaafatTurki/genxrdb'
 makedepends=(git rust)
 source=("git+$url")
 # source=("git+$url#commit=b146958ecbb8c8c926159509ca7fb32a8573f897") # tag: v0.18.3
