@@ -5,4 +5,4 @@ edition = "2021"
 
 [dependencies]
 serde = "1.0.130"
-toml = "0.5.8"
+toml = { version = "0.5.8", features = ["preserve_order"] }
