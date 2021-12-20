@@ -1,6 +1,8 @@
 # GENXRDB
 a tool that generates xresources from toml
 
+> This is alpha software and is very WIP atm.
+
 
 #### input.toml
 ```toml
@@ -22,7 +24,7 @@ color2      = "#B0DB43"
 color3      = "#FFAE03"
 ```
 
-#### output.xrdb
+#### output
 ```
 ! vim: filetype=xdefaults:commentstring=!%s
 
