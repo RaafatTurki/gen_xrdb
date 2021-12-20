@@ -1,4 +1,5 @@
-header = "! vim: filetype=xdefaults:commentstring=!%s"
+header_file = "./samples/header.txt"
+footer_file = "./samples/footer.txt"
 
 [defs]
 BL          = "#000000"
