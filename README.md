@@ -1,20 +1,43 @@
 # GENXRDB
 a tool that generates xresources from toml
 
-> This is alpha software and is very WIP atm.
+## Installation
+###### From Source
+clone and `cargo build`
+###### From AUR
+`paru -S genxrdb`
 
+## Usage
+`genxrdb ./input.toml`  
+prints the generated xresources equivalent to stdout
 
-#### input.toml
+###### header.txt
+```
+! vim: filetype=xdefaults:commentstring=!%s
+```
+
+###### footer.txt
+```
+! fin
+```
+
+###### input.toml
 ```toml
-header = "! vim: filetype=xdefaults:commentstring=!%s"
+header = "./header"
+footer = "./footer"
+
 [defs]
 BL          = "#000000"
 WH          = "#0A151F"
+DPI         = 97
+
 [mods]
 Xft.dpi     = "DPI"
+
 [mods.col]
 bl          = "BL"
 wh          = "WH"
+
 [mods.ALL]
 background  = "#0D1017"
 foreground  = "#F1F7ED"
@@ -24,12 +47,13 @@ color2      = "#B0DB43"
 color3      = "#FFAE03"
 ```
 
-#### output
+###### output
 ```
 ! vim: filetype=xdefaults:commentstring=!%s
 
 #define BL #000000
 #define WH #0A151F
+#define DPI 97
 
 Xft.dpi: DPI
 
@@ -42,4 +66,6 @@ col.wh: WH
 *.color2: #B0DB43
 *.color3: #FFAE03
 *.foreground: #F1F7ED
+
+! fin
 ```
