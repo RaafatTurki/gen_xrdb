@@ -4,23 +4,23 @@ use std::env;
 mod utils;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    let input_file_path = &args[1];
+    let arg: Vec<String> = env::args().collect();
+    let input_file_path = &arg[1];
 
-    let data = utils::get_toml_values_from_toml_file(&input_file_path);
+    let data = utils::get_toml_values_from_toml_file(input_file_path);
     let path = Path::new(input_file_path);
     let mut xrdb_content = String::new();
 
     // generating header
     let header_file = data["header_file"].as_str().unwrap();
-    let header_file_path = &path.parent().unwrap().join(header_file);
+    let header_file_path = path.parent().unwrap().join(header_file);
     let header = utils::get_file_contents(header_file_path.to_str().unwrap());
     xrdb_content.push_str(format!("{}\n", header).as_str());
 
     // generating defines
     for (k, v) in data["defs"].as_table().unwrap() {
         let xrdb_line = format!("{} {} {}\n", "#define", k, utils::get_xrdb_value_from_toml_value(v));
-        xrdb_content.push_str(&xrdb_line.as_str());
+        xrdb_content.push_str(xrdb_line.as_str());
     }
     xrdb_content.push_str("\n");
 
@@ -36,14 +36,14 @@ fn main() {
 
         for (k, v) in table.as_table().unwrap() {
             let xrdb_line = format!("{}.{}: {}\n", final_mod_name, k, utils::get_xrdb_value_from_toml_value(v));
-            xrdb_content.push_str(&xrdb_line.as_str());
+            xrdb_content.push_str(xrdb_line.as_str());
         }
         xrdb_content.push_str("\n");
     }
 
     // generating footer
     let footer_file = data["footer_file"].as_str().unwrap();
-    let footer_file_path = &path.parent().unwrap().join(footer_file);
+    let footer_file_path = path.parent().unwrap().join(footer_file);
     let footer = utils::get_file_contents(footer_file_path.to_str().unwrap());
     xrdb_content.push_str(format!("{}\n", footer).as_str());
 
