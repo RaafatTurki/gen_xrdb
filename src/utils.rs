@@ -9,12 +9,12 @@ pub fn get_file_contents(file_name: &str) -> String {
     contents
 }
 
-pub fn get_toml_values_from_toml_file(file_name: &str) -> Value {
+pub fn parse_toml_file(file_name: &str) -> Value {
     let contents = get_file_contents(file_name);
     contents.parse::<Value>().unwrap()
 }
 
-pub fn get_xrdb_value_from_toml_value(v: &Value) -> String {
+pub fn gen_xrdb_value_from_toml_value(v: &Value) -> String {
     let xrdb_v: String;
 
     if v.is_str() {

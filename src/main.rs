@@ -7,7 +7,7 @@ fn main() {
     let arg: Vec<String> = env::args().collect();
     let input_file_path = &arg[1];
 
-    let data = utils::get_toml_values_from_toml_file(input_file_path);
+    let data = utils::parse_toml_file(input_file_path);
     let path = Path::new(input_file_path);
     let mut xrdb_content = String::new();
 
@@ -19,7 +19,7 @@ fn main() {
 
     // generating defines
     for (k, v) in data["defs"].as_table().unwrap() {
-        let xrdb_line = format!("{} {} {}\n", "#define", k, utils::get_xrdb_value_from_toml_value(v));
+        let xrdb_line = format!("{} {} {}\n", "#define", k, utils::gen_xrdb_value_from_toml_value(v));
         xrdb_content.push_str(xrdb_line.as_str());
     }
     xrdb_content.push_str("\n");
@@ -35,7 +35,7 @@ fn main() {
         }
 
         for (k, v) in table.as_table().unwrap() {
-            let xrdb_line = format!("{}.{}: {}\n", final_mod_name, k, utils::get_xrdb_value_from_toml_value(v));
+            let xrdb_line = format!("{}.{}: {}\n", final_mod_name, k, utils::gen_xrdb_value_from_toml_value(v));
             xrdb_content.push_str(xrdb_line.as_str());
         }
         xrdb_content.push_str("\n");
